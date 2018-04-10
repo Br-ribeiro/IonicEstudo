@@ -8,11 +8,31 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-slides pager>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-slide *ngFor="let slide of slides">
+      <ion-toolbar>
+        <ion-buttons end>
+          <button ion-button color="primary"(click)="goPage()">Pular</button>
+        </ion-buttons>
+      </ion-toolbar>
+      <img [src]="slide.imagem" class="slide-image"/>
+      <h2 class="slide-titulo" [innerHTML]="slide.titulo"></h2>
+      <p [innerHTML]="slide.descricao"></p>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <img src="assets/imgs/logo.png" class="slide-image"/>
+      <h2 class="slide-title">GO GO GO GO GO GO ?</h2>
+      <button ion-button large clear icon-end color="primary"(click)="goPage()">
+        Continuar
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+
+  </ion-slides>
+
 </ion-content>
