@@ -10,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CardsPageModule } from '../pages/cards/cards.module';
 import { ConfigProvider } from '../providers/config/config';
+import { MovieProvider } from '../providers/movie/movie';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { ConfigProvider } from '../providers/config/config';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    CardsPageModule
+    CardsPageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +35,8 @@ import { ConfigProvider } from '../providers/config/config';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConfigProvider
+    ConfigProvider,
+    MovieProvider
   ]
 })
 export class AppModule {}

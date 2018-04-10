@@ -9,7 +9,9 @@
 
 
 <ion-content padding>
-
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
     <ion-card>
 
   <ion-item>
@@ -42,5 +44,6 @@
   </ion-row>
 
 </ion-card>
+
   
 </ion-content>
