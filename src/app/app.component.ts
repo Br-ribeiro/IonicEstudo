@@ -5,23 +5,30 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { ConfigProvider } from '../providers/config/config';
+import { CardsPage } from '../pages/cards/cards';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [
+    ConfigProvider
+  ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, 
-    public statusBar: StatusBar, 
-    public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public configProvider: ConfigProvider
+      ) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
+
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage }
@@ -31,8 +38,14 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      // serve apenas para pegar e setar o localstore
+      let config = this.configProvider.getConfigData();
+      if(config == null){
+        this.rootPage = HomePage;
+        this.configProvider.setConfigData(false);
+      }else{
+        this.rootPage = CardsPage
+      }
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
