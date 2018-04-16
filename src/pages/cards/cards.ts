@@ -17,6 +17,7 @@ export class CardsPage {
   public isRefreshing: boolean = false;
   public page = 1;
   public listaFilmes = new Array<any>();
+  public infinitiScroll;
 
 
 
@@ -65,8 +66,6 @@ carregarFilmes(newpage:boolean = false){
   });
 }
 
-
-
   doRefresh(refresh) {
     this.refresh = refresh;
     this.isRefreshing = true;
@@ -82,6 +81,12 @@ carregarFilmes(newpage:boolean = false){
   }
   closeLoading(){
     this.loader.dismiss();
+  }
+
+  doInfinite(infinitiScroll){
+    this.page++;
+    this.infinitiScroll = infinitiScroll;
+    this.carregarFilmes(true);
   }
 
 }

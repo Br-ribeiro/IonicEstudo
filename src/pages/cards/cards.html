@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>cards</ion-title>
+    <ion-title>Filmes</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,38 +12,37 @@
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
-    <ion-card>
+
+    <ion-card *ngFor="let Filmes of listaFilmes" >
 
   <ion-item>
     <ion-avatar item-start>
-      <img src="/assets/imgs/perfil.jpg">
+      <img [src]="'https://image.tmdb.org/t/p/w500/' + Filmes.backdrop_path">
     </ion-avatar>
-    <h2>Marty McFly</h2>
-    <p>November 5, 1955</p>
-  </ion-item>
+    <h2>{{ Filmes.original_title }}</h2>
+  </ion-item >
 
-  <img src="/assets/imgs/dukey_suave.jpg">
+  <img class="AA" [src]="'https://image.tmdb.org/t/p/w500/' + Filmes.poster_path">
 
   <ion-card-content>
-    <p>Esse dog é muito louco doidão</p>
+    <p>{{ Filmes.overview }}</p>
   </ion-card-content>
 
   <ion-row>
-    <ion-col>
+    <ion-col text-center>
       <button ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
-        <div>1200 Likes</div>
+        <div>{{ Filmes.popularity }}</div>
       </button>
     </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>400 Comments</div>
-      </button>
-    </ion-col>
+  
   </ion-row>
 
 </ion-card>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
 
   
 </ion-content>
