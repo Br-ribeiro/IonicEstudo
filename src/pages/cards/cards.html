@@ -8,14 +8,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="content">
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
 
     <ion-card *ngFor="let Filmes of listaFilmes" >
 
-  <ion-item>
+  <ion-item class="titulo"> 
     <ion-avatar item-start>
       <img [src]="'https://image.tmdb.org/t/p/w500/' + Filmes.backdrop_path">
     </ion-avatar>
@@ -24,11 +24,11 @@
 
   <img class="AA" [src]="'https://image.tmdb.org/t/p/w500/' + Filmes.poster_path">
 
-  <ion-card-content>
+  <ion-card-content class="titulo">
     <p>{{ Filmes.overview }}</p>
   </ion-card-content>
 
-  <ion-row>
+  <ion-row class="titulo">
     <ion-col text-center>
       <button ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
